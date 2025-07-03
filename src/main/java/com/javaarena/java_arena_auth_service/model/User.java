@@ -18,7 +18,21 @@ public class User {
     private Long id;
 
     private String username;
+
+    @Column(unique = true)
     private String email;
-    private String password_hash;
+
+    @Column(nullable = false)
+    private String passwordHash;
+
+    private String role;
     private LocalDateTime createdAt;
+
+    public User(String username, String email, String passwordHash, String role, LocalDateTime createdAt) {
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.role = role;
+        this.createdAt = createdAt;
+    }
 }

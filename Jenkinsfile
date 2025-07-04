@@ -1,20 +1,20 @@
 // jenkinsfile
-agent any
-
-tools {
-    maven 'Maven 4.0.0'
-    jdk 'JDK 21'
-}
-
-parameters {
-    string(name: 'GCP_PROJECT_ID', defaultValue: 'java-arena', description: 'GCP project ID')
-    string(name: 'GCR_IMAGE_NAME', defaultValue: 'java-arena-auth-service', description: 'GCR image name')
-    string(name: 'APP_VERSION', defaultValue: '1.0.0', description: 'Application/Docker image version')
-    string(name: 'GKE_CLUSTER_NAME', defaultValue: 'javaarena', description: 'GKE cluster name')
-    string(name: 'GKE_CLUSTER_ZONE', defaultValue: 'us-central1', description: 'GKE cluster zone')
-}
-
 pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 4.0.0'
+        jdk 'JDK 21'
+    }
+
+    parameters {
+        string(name: 'GCP_PROJECT_ID', defaultValue: 'java-arena', description: 'GCP project ID')
+        string(name: 'GCR_IMAGE_NAME', defaultValue: 'java-arena-auth-service', description: 'GCR image name')
+        string(name: 'APP_VERSION', defaultValue: '1.0.0', description: 'Application/Docker image version')
+        string(name: 'GKE_CLUSTER_NAME', defaultValue: 'javaarena', description: 'GKE cluster name')
+        string(name: 'GKE_CLUSTER_ZONE', defaultValue: 'us-central1', description: 'GKE cluster zone')
+    }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
@@ -41,6 +41,9 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
+                // Add your code analysis steps here, e.g.,
+                echo "Skipping code analysis for now."
+                // sh "sonar-scanner ..."
             }
         }
 

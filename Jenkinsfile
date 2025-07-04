@@ -31,8 +31,12 @@ pipeline {
 
         stage('Debug Path') {
             steps {
-                sh 'echo $PATH' // For sh
-            }
+                    echo "Attempting to run sh.exe with full path..."
+                    // Replace with your actual Git Bash sh.exe path
+                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "echo 'Verifying sh.exe execution from Jenkins!'"'''
+                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "echo PATH in sh.exe context: $PATH"'''
+                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "ls -la"'''
+                }
         }
 
         stage('Build Java App') {

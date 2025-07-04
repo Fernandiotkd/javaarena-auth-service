@@ -1,8 +1,8 @@
 // jenkinsfile
 pipeline {
      agent {
-            label 'Java21'
-        }
+        label 'Built-In'
+     }
 
     tools {
         maven 'Maven 3.9.10'

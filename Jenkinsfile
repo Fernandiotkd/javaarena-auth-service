@@ -1,6 +1,8 @@
 // jenkinsfile
 pipeline {
-    agent any
+     agent {
+            label 'Java21'
+        }
 
     tools {
         maven 'Maven 4.0.0'

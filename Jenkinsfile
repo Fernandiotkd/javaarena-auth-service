@@ -29,6 +29,12 @@ pipeline {
             }
         }
 
+        stage('Debug Path') {
+            steps {
+                sh 'echo $PATH' // For sh
+            }
+        }
+
         stage('Build Java App') {
             steps {
                 sh "mvn clean package -DskipTests"

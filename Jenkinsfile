@@ -32,9 +32,12 @@ pipeline {
         stage('Debug Path') {
             steps {
                     echo "Attempting to run sh.exe with full path..."
-                    // Replace with your actual Git Bash sh.exe path
+                     // Replace with your actual Git Bash sh.exe path
                     sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "echo 'Verifying sh.exe execution from Jenkins!'"'''
-                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "echo PATH in sh.exe context: $PATH"'''
+
+                    echo "Checking Windows PATH with bat command..."
+
+                    // Continue using sh.exe for commands that require a Unix-like environment
                     sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "ls -la"'''
                 }
         }

@@ -90,7 +90,7 @@ pipeline {
                 script {
                     echo "Deploying to Kubernetes..."
                     sh "gcloud container clusters get-credentials ${params.GKE_CLUSTER_NAME} --zone ${params.GKE_CLUSTER_ZONE} --project ${params.GCP_PROJECT_ID}"
-                    sh "sed -i 's|gcr.io/tu-proyecto-id/mi-app:1.0|gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:${params.APP_VERSION}|g' deployment.yaml"
+                    sh "sed -i 's|gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:1.0|gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:${params.APP_VERSION}|g' deployment.yaml"
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl apply -f service.yaml"
                     echo "Deployment completed. Waiting for external IP of the service..."
@@ -99,7 +99,7 @@ pipeline {
                         while (externalIp == null || externalIp == "") {
                             sleep 10
                             try {
-                                externalIp = sh(script: "kubectl get service mi-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'", returnStdout: true).trim()
+                                externalIp = sh(script: "kubectl get service ${params.GCR_IMAGE_NAME} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'", returnStdout: true).trim()
                             } catch (Exception e) {
                                 echo "Error getting external IP, retrying... (${e.message})"
                             }

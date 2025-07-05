@@ -77,7 +77,7 @@ pipeline {
                 script {
                     def gcrImage = "gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:${params.APP_VERSION}"
                     echo "Pushing Docker image to GCR: ${gcrImage}"
-                    withCredentials([googleServiceAccountKey('deployment-service-account')]) {
+                    withCredentials([file(credentialsId: 'gcp-service-account-json', variable: 'GCP_KEY_FILE')]) {
                         sh "gcloud auth configure-docker"
                         sh "docker push ${gcrImage}"
                     }

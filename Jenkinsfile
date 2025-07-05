@@ -1,7 +1,7 @@
 // jenkinsfile
 pipeline {
      agent {
-        label 'Built-In'
+        label 'Java21'
      }
 
     tools {

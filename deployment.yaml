@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: java-arena-auth-service-deployment
   labels:
-    app: mi-app
+    app: java-arena-auth-service
 spec:
   replicas: 2
   selector:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: java-arena-auth-service-container
-          image: gcr.io/tu-proyecto-id/java-arena-auth-service:1.0
+          image: gcr.io/java-arena/java-arena-auth-service:1.0
           ports:
             - containerPort: 8080
           resources:

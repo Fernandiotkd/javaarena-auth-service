@@ -29,19 +29,6 @@ pipeline {
             }
         }
 
-        stage('Debug Path') {
-            steps {
-                    echo "Attempting to run sh.exe with full path..."
-                     // Replace with your actual Git Bash sh.exe path
-                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "echo 'Verifying sh.exe execution from Jenkins!'"'''
-
-                    echo "Checking Windows PATH with bat command..."
-
-                    // Continue using sh.exe for commands that require a Unix-like environment
-                    sh '''"C:\\Program Files\\Git\\bin\\sh.exe" -c "ls -la"'''
-                }
-        }
-
         stage('Build Java App') {
             steps {
                 sh "mvn clean package -DskipTests"

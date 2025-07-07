@@ -49,9 +49,7 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal(); // Aquí podrías necesitar castear a tu modelo User si lo estás retornando
-        // o si usas org.springframework.security.core.userdetails.User,
-        // puedes obtener el username y buscar el id/email en el repo.
+        org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
 
         Optional<User> foundUser = userRepository.findByUsername(userDetails.getUsername());
 
@@ -75,7 +73,6 @@ public class LoginController {
                     .body(new LoginResponse("Error: ¡El correo electrónico ya está en uso!"));
         }
 
-        // Crear nuevo usuario
         User user = new User(null, signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()),

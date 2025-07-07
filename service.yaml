@@ -4,7 +4,7 @@ metadata:
   name: java-arena-auth-service
 spec:
   selector:
-    app: java-arena-auth
+    app: java-arena-auth-service
   type: LoadBalancer
   ports:
     - protocol: TCP

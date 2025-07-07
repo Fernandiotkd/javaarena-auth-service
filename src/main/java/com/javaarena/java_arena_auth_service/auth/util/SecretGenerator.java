@@ -1,6 +1,5 @@
 package com.javaarena.java_arena_auth_service.auth.util;
 
-import java.security.SecureRandom;
 import java.util.Base64;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

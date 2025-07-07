@@ -22,7 +22,6 @@ public class JwtUtils {
     @Value("${jwt.expiration}")
     private final int jwtExpirationMs;
 
-    // Inyección por constructor
     public JwtUtils(SecretGenerator secretGenerator, @Value("${jwt.expiration}") int jwtExpirationMs) {
         this.jwtSecret = SecretGenerator.generateToken();
         logger.info(jwtSecret);

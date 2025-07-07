@@ -74,17 +74,6 @@ pipeline {
             }
         }
 
-        stage('Install Kubernetes Tools') {
-                    steps {
-                        sh "gcloud components update"
-                        sh "gcloud components install kubectl gke-gcloud-auth-plugin"
-                        // This is a good place to add a 'which kubectl' and 'which gke-gcloud-auth-plugin'
-                        // to ensure they are found after installation.
-                        sh "which kubectl"
-                        sh "which gke-gcloud-auth-plugin"
-                    }
-                }
-
         stage('Deploy to Kubernetes') {
             steps {
                 script {
